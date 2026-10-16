@@ -1,0 +1,15 @@
+/target
+*.evtx.dump
+.tmp-*
+testdata/real*.pf
+testdata/Amcache.hve
+
+# 本地私有目录（调研材料/开发过程文档，不入库不公开）
+local/
+
+# 生成的报告文件（含扫描数据，不入库）
+LetMeSeeSee-交互式报告-*.html
+testdata/osmru-longest.bin
+
+# 交接文档（含本机环境信息，永不入库）
+HANDOFF.md

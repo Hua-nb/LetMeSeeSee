@@ -1,0 +1,50 @@
+[package]
+name = "letmeseesee"
+version = "1.2.0"
+edition = "2021"
+description = "Let me see see：Windows 应急响应取证时间线（授权应急响应用途）"
+build = "build.rs"
+
+[[bin]]
+name = "LetMeSeeSee"
+path = "src/main.rs"
+
+[dependencies]
+tiny_http = "0.12"
+rust-embed = "8"
+evtx = "0.8"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+chrono = { version = "0.4", features = ["clock"] }
+getrandom = "0.2"
+webbrowser = "1"
+winreg = "0.52"
+encoding_rs = "0.8"
+windows-sys = { version = "0.48", features = [
+    "Win32_Storage_FileSystem",
+    "Win32_Foundation",
+    "Win32_UI_Shell",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_Security",
+    "Win32_System_Threading",
+    "Win32_System_Diagnostics_Debug",       # ReadProcessMemory
+    "Win32_System_Diagnostics_ToolHelp",    # CreateToolhelp32Snapshot
+    "Win32_System_Kernel",                  # NtQueryInformationProcess
+    "Win32_NetworkManagement_IpHelper",     # GetExtendedTcpTable
+    "Win32_NetworkManagement_Dns",          # DnsGetCacheDataTable
+    "Win32_Networking_WinSock",             # sockaddr 结构体
+    "Win32_System_SystemInformation",       # GetSystemInfo
+    "Win32_System_Com",                     # CoInitializeEx / CoCreateInstance（WMI COM）
+    "Win32_System_Wmi",                     # CLSID_WbemLocator / WBEM_FLAG_*
+] }
+regf-rs = "0.1"
+
+[profile.release]
+opt-level = "z"
+lto = true
+strip = true
+codegen-units = 1
+panic = "abort"
+
+[build-dependencies]
+winresource = "0.1"
