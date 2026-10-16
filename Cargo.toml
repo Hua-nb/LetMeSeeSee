@@ -39,6 +39,9 @@ windows-sys = { version = "0.48", features = [
 ] }
 regf-rs = "0.1"
 
+[profile.dev]
+debug = 0 # 测试构建不带调试信息（体积大头；需要断点调试时临时改回 2）
+
 [profile.release]
 opt-level = "z"
 lto = true
